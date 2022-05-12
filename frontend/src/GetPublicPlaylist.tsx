@@ -8,7 +8,6 @@ enum SelectCountry {
     GLOBAL = "GLOBAL",
     USA = "USA",
     ARGENTINA = "ARGENTINA",
-    JAPAN = "JAPAN"
 }
 
 enum CountryText {
@@ -28,24 +27,11 @@ const GetPublicPlaylist = () => {
     const [countryText, setCountryText] = useState<string>(CountryText.SWEDEN)
     const [selectedButton, setSelectedButton] = useState<number>(1)
 
-    const OnClickHandler = (Country: string, CountryText: string, CountryIndex: number) => {
-        setPlaylistCountry(Country);
-        setCountryText(CountryText);
-        if (Country === SelectCountry.SWEDEN) {
-            setSelectedButton(CountryIndex);
-        }
-        else if (Country === SelectCountry.GLOBAL) {
-            setSelectedButton(CountryIndex);
-        }
-        else if (Country === SelectCountry.USA) {
-            setSelectedButton(CountryIndex);
-        }
-        else if (Country === SelectCountry.ARGENTINA) {
-            setSelectedButton(CountryIndex);
-        }
-        else if (Country === SelectCountry.JAPAN) {
-            setSelectedButton(CountryIndex);
-        }
+    const OnClickHandler = (Country: any) => {
+        //TODO FIX Type
+        setPlaylistCountry(Country.name);
+        setCountryText(Country.phrase);
+        setSelectedButton(Country.index);
     }
 
     useEffect(() => {
@@ -80,9 +66,15 @@ const GetPublicPlaylist = () => {
         <div className="PersonalGraphCapsule">
             <div className="GraphList">
                 <div className="TimeTermButtons">
-                    {data.map(d => {
+                    {data.map(Country => {
                         return (
-                            <button key={d.name} className={selectedButton === d.index ? "GraphListButtonSelected" : "GraphListButton"} onClick={() => OnClickHandler(d.name, d.phrase, d.index)}>{d.name}</button>
+                            <button key={Country.name}
+                                className={selectedButton === Country.index 
+                                ? "GraphListButtonSelected" : "GraphListButton"} 
+                                onClick={() => 
+                                OnClickHandler(Country)}>
+                                {Country.name}
+                            </button>
                         )
                     })}
                 </div>
@@ -90,7 +82,11 @@ const GetPublicPlaylist = () => {
                 <div className="imageBoxCapsule">
                     {playListTracks.map((tracks, index) => {
                         return (
-                            <div key={index} className="imageDivBox" onClick={() => window.open(tracks.link + "?si=8f0fefabbde14156", "_blank")}> <p>{index + 1}. {tracks.name} - {tracks.artistname}</p><img className='imageDiv' src={tracks.image} /></div>
+                            <div key={index} className="imageDivBox" 
+                                onClick={() => window.open(tracks.link + "?si=8f0fefabbde14156", "_blank")}> 
+                                <p>{index + 1}. {tracks.name} - {tracks.artistname}</p>
+                                <img className='imageDiv' src={tracks.image} />
+                            </div>
                         )
                     })}
                 </div>

@@ -18,12 +18,29 @@ function App() {
     <div className="App">
       
       <BrowserRouter>
-      <Routes>
-      <Route path="/"element={<><GeneralLogin loginRoute={backendLoginRoute}/></>}/>
-      <Route path="/homepage" element={<><Navbar loginRoute={backendLoginRoute}/><PersonalLogin loginRoute={backendLoginRoute}/><GeneralSpotifyHistory/></>}/>
-      <Route path="profile" element={<><Navbar loginRoute={backendLoginRoute}/><PersonalPage/></>}></Route>
-      <Route path="about" element={<><Navbar loginRoute={backendLoginRoute}/><AboutPage /></>}/>
-      </Routes>
+        <Routes>
+          
+          <Route path="/"element={<>
+            <GeneralLogin loginRoute={backendLoginRoute}/>
+          </>}/>
+         
+          <Route path="/homepage" element={<>
+            <Navbar loginRoute={backendLoginRoute}/>
+            <PersonalLogin loginRoute={backendLoginRoute}/>
+            <GeneralSpotifyHistory/>
+          </>}/>
+         
+          <Route path="profile" element={<>
+            <Navbar loginRoute={backendLoginRoute}/>
+            <PersonalPage/>
+          </>}/>
+         
+          <Route path="about" element={<>
+              <Navbar loginRoute={backendLoginRoute}/>
+              <AboutPage />
+          </>}/>
+          
+        </Routes>
     </BrowserRouter>
     </div>
   );

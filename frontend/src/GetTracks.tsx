@@ -49,7 +49,11 @@ const GetTracks = ({ rangeTerm, timePeriodRange }: Props) => {
                 <div className="imageBoxCapsule">
                     {trackList.map((track, index) => {
                         return (
-                            <div key={index} className="imageDivBox" onClick={() => window.open(track.link + "?si=8f0fefabbde14156", "_blank")}> <p>{index + 1}. {track.name} - {track.artistname}</p><img className='imageDiv' src={track.image} /></div>
+                            <div key={index} className="imageDivBox" 
+                                onClick={() => window.open(track.link + "?si=8f0fefabbde14156", "_blank")}> 
+                                <p>{index + 1}. {track.name} - {track.artistname}</p>
+                                <img className='imageDiv' src={track.image} />
+                            </div>
                         )
                     })}
                 </div>
