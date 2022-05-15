@@ -13,6 +13,7 @@ import { authRouter } from './auth/auth.router';
 import { artistsRouter } from './artists/artists.router';
 import { tracksRouter } from './tracks/tracks.router';
 import { playlistsRouter } from './playlists/playlists.router';
+import { userRouter } from './user/user.router';
 
 /**
  * App Variables
@@ -97,6 +98,7 @@ app.use("/auth", authRouter)
 app.use("/artists", artistsRouter)
 app.use("/tracks", tracksRouter)
 app.use("/playlists", playlistsRouter)
+app.use("/user", userRouter)
 
 app.listen(PORT, () => {
     console.log(`api listening at http://0.0.0.0:${PORT}`)

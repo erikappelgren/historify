@@ -4,8 +4,9 @@ import { Request } from "express";
 import pool from "../db";
 import { QueryConfig, QueryResult } from "pg";
 
-export const storeSessionUserName = (req: Request, userName): void => {
-    req.session.userName = userName
+export const storeSessionUserName = (req: Request, userName, displayname): void => {
+    req.session.userName = userName;
+    req.session.displayName = displayname;
     console.log(`User "${userName}" has been stored in session`);
 }
 

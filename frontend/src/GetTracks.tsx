@@ -1,10 +1,19 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { Track, TimeTerm, TimePeriod } from './PersonalPage'
+import { TimeTerm, TimePeriod } from './PersonalPage'
 
 interface Props {
     rangeTerm: TimeTerm
     timePeriodRange: TimePeriod
+}
+
+export interface Track {
+    name: string
+    index: number
+    image: string
+    imageSize: number
+    artistname: string
+    link: string
 }
 
 const GetTracks = ({ rangeTerm, timePeriodRange }: Props) => {
@@ -23,8 +32,7 @@ const GetTracks = ({ rangeTerm, timePeriodRange }: Props) => {
             .then(res => res.json())
             .then(data => {
                 let newTrackList: Track[] = []
-                let count = 1
-                data.forEach((track: any) => {
+                data.map((track: any) => {
                     let newTrack: Track = {
                         artistname: track.artist_name,
                         name: track.track_name,
@@ -34,7 +42,6 @@ const GetTracks = ({ rangeTerm, timePeriodRange }: Props) => {
                         link: track.link
                     }
                     newTrackList.push(newTrack)
-                    count++
                 });
 
                 setTrackList(newTrackList)
@@ -47,11 +54,12 @@ const GetTracks = ({ rangeTerm, timePeriodRange }: Props) => {
             <div className="GraphList">
                 <h3>Your Top Tracks {timePeriodRange}</h3>
                 <div className="imageBoxCapsule">
-                    {trackList.map((track, index) => {
+                    {trackList.sort((a: { index: number }, b: { index: number }) => (a.index > b.index) ? 1 : -1)
+                    .map((track, index) => {
                         return (
                             <div key={index} className="imageDivBox" 
                                 onClick={() => window.open(track.link + "?si=8f0fefabbde14156", "_blank")}> 
-                                <p>{index + 1}. {track.name} - {track.artistname}</p>
+                                <p>{track.index}. {track.name} - {track.artistname}</p>
                                 <img className='imageDiv' src={track.image} />
                             </div>
                         )

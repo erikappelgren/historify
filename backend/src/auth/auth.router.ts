@@ -97,7 +97,7 @@ authRouter.get('/callback', async function (req: Request, res: Response) {
                     "Authorization": "Bearer " + access_token
                 }
             })
-            const { id: user_name } = await userresponse.json()
+            const { id: user_name, display_name: displayname } = await userresponse.json();
 
             //check if user exists => gets id
             const user_id = await getUserId(access_token, refresh_token, user_name)
@@ -118,7 +118,7 @@ authRouter.get('/callback', async function (req: Request, res: Response) {
 
             console.log(saveingtoDB);
 
-            storeSessionUserName(req, user_name)
+            storeSessionUserName(req, user_name, displayname)
             res.redirect("http://localhost:3005/profile")
 
         } catch (error) {

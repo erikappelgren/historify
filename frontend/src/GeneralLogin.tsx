@@ -10,8 +10,9 @@ const GeneralLogin = ({loginRoute}: Props) => {
         <div className="GeneralLoginBox">
             <a href={loginRoute} className="PersonalLoginLink">
                 <div className="PersonalLoginTextCapsule"> 
-                <img className="PersonaolLoginSpotifyIcon" src="https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png"></img>
-                </div>LOG IN TO SPOTIFY HERE 
+                 <img className="PersonaolLoginSpotifyIcon" src="https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png"></img>
+                </div>
+                    LOG IN TO SPOTIFY HERE 
                 <div className="PersonalLoginArrowIcon">&#129130;</div>
             </a>
         </div>

@@ -21,32 +21,35 @@ code {
   padding: 12px;
   display: flex;
   align-items: center;
-  margin: auto;
-  background-color:#C0C8BF;
-  border-bottom: 1px solid #f2f2f2;
-  
+  /* margin: auto; */
+  background-color:#141414;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
 }
 
-.navbar div {
+.links {
+  background-color: #141414;
+  text-align: center;
   margin: auto;
   display: inline-block;
 }
 
 .navbar a {
   font-size: 16px;
-  margin-left: 16px;
-  margin: 42px;
+  margin-right: 16px;
+  /* margin: 42px; */
   text-decoration: none;
   padding: 10px 32px;
-  background-color: #95EE93;
+  color: #f2f2f2;
+  background-color: #141414;
   border-radius: 4px;
-  background: linear-gradient(to left, #FAF6F6 50%, #141414 50%) right;
   background-size: 200%;
   transition: .2s ease-out;
 }
 .navbar a:hover {
   color: #95EE93;
-  background-color: black;
+  background-color: #141414;
   background-position: left;
 }
 
@@ -57,7 +60,7 @@ code {
   padding: 10px 32px;
   border-radius: 10px;
   border: none;
-  color: black;
+  color: #141414;
   background: linear-gradient(to left, #95EE93 50%, #141414 50%) right;
   background-size: 200%;
   transition: .2s ease-out;
@@ -87,6 +90,8 @@ code {
 
 #GeneralBox{
   margin: 24vh;
+  border-radius: 100px;
+
 }
 
 .PersonalLoginArrowIcon{
@@ -105,6 +110,7 @@ code {
 
 .PersonalLoginTextCapsule{
   display: inline-block;
+
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 0.2s, opacity 0.2s linear;
@@ -112,17 +118,20 @@ code {
 
 .PersonalLoginLink {
   text-decoration: none;
-  color:black;
+  color:#FAF6F6;
   background-size: 200%;
   transition: .6s ease-out;
   font-size: 58px;
 }
 
 .PersonalLoginBoxCapsule{
-  background: linear-gradient(to left, #FAF6F6 50%, #141414 50%) right;
+  /* background: linear-gradient(to left, #FAF6F6 50%, #141414 50%) right; */
+  background-color: #141414;
   background-size: 200%;
   transition: .6s ease-out;
   margin: 20px;
+  
+  border-radius: 100px;
 }
 
 .PersonalLoginBoxCapsule:hover{
@@ -221,8 +230,11 @@ code {
   padding: 10px 32px;
   border-radius: 10px;
   border: none;
-  color: black;
-  background: linear-gradient(to left, #95EE93 50%, #141414 50%) right;
+  color: #141414;
+  background-color: #FAF6F6;
+  border-color: #141414;
+  border-style: solid;
+  border-width: 1px;
   background-size: 200%;
   transition: .2s ease-out;
 }
@@ -233,22 +245,18 @@ code {
   background-position: left;
 }
 
-/* .GraphListButton:focus {
-  color: #95EE93;
-  background-color: #141414;
-  background-position: left;
-} */
-
 .GraphListButtonSelected{
   color: #95EE93;
   background-color: #141414;
-  font-size: 14px;
+  font-size: 16px;
   margin-right: 8px;
   margin-top: 10px;
   text-decoration: none;
   padding: 10px 32px;
   border-radius: 10px;
-  border: none;
+  border-color: #141414;
+  border-style: solid;
+  border-width: 2px;
 }
 
 .GraphList h3{

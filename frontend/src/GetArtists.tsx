@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import {Artist, TimeTerm, TimePeriod} from './PersonalPage'
+import { TimeTerm, TimePeriod} from './PersonalPage'
 
 interface Props{
     rangeTerm: TimeTerm
     timePeriodRange: TimePeriod
+}
+
+export interface Artist {
+    name: string
+    index: number
+    image: string
+    imageSize: number
+    link: string
 }
 
 const GetArtists = ({rangeTerm, timePeriodRange}: Props) => {
@@ -19,12 +27,11 @@ const GetArtists = ({rangeTerm, timePeriodRange}: Props) => {
         
             fetch('http://localhost:5005/artists/' + rangeTerm, {
                 credentials: 'include'
-            }) // credentials
+            })
             .then(res => res.json())
             .then(data => {
                 let newArtistList: Artist[] = []
-                let count = 1
-                data.forEach((artist: any) => {
+                data.map((artist: any) => {
                     let newArtist: Artist = {
                         name: artist.artist_name,
                         image: artist.image_url,
@@ -33,7 +40,6 @@ const GetArtists = ({rangeTerm, timePeriodRange}: Props) => {
                         link: artist.link
                     }
                     newArtistList.push(newArtist)
-                    count++
                 });
 
                 setArtistList(newArtistList)
@@ -42,20 +48,24 @@ const GetArtists = ({rangeTerm, timePeriodRange}: Props) => {
     }, [rangeTerm]
     )
     return(
-    <div className="PersonalGraphCapsule">
-                <div className="GraphList">
-                    <h3>Your Top Artists {timePeriodRange}</h3>
-                    
-                    <div className="imageBoxCapsule">
-                    {artistList.map((artist, index) => {
+        <div className="PersonalGraphCapsule">
+            <div className="GraphList">
+                <h3>Your Top Artists {timePeriodRange}</h3>
+                <div className="imageBoxCapsule">
+                    {artistList.sort((a: { index: number }, b: { index: number }) => (a.index > b.index) ? 1 : -1)
+                    .map((artist, index) => {
                         return (
-                            <div key={index} className="imageDivBox" onClick={()=> window.open(artist.link + "?si=8f0fefabbde14156", "_blank")}> <p>{index + 1}. {artist.name}</p><img className='imageDiv' src={artist.image} /></div>
+                            <div key={index} className="imageDivBox" 
+                                onClick={()=> window.open(artist.link + "?si=8f0fefabbde14156", "_blank")}> 
+                                <p>{artist.index}. {artist.name}</p>
+                                <img className='imageDiv' src={artist.image} />
+                            </div>
                         )
                     })}
                 </div>
             </div>
-     </div>
-     )
+        </div>
+    )
 }
 
 export default GetArtists;
